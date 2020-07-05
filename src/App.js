@@ -6,7 +6,7 @@ import "./App.css";
 const App = () => {
   const [isReady, setIsReady] = useState(false);
   const [products, setProducts] = useState(null);
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
     Promise.all([
@@ -25,7 +25,7 @@ const App = () => {
 
   const getData = (branchName) => {
     return fetch(`api/${branchName}.json`).then((response) => response.json());
-  }
+  };
 
   const searchInputHandler = (e) => {
     setFilter(e.target.value);
@@ -40,6 +40,6 @@ const App = () => {
   ) : (
     "Loading..."
   );
-}
+};
 
 export default App;

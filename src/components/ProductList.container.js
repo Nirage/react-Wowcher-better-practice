@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import ProductItem from './ProductItem';
 
@@ -60,6 +61,12 @@ const ProductList = ({ products, filter, searchInputHandler }) => {
       </table>
     </main>
   );
+};
+
+ProductList.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  filter: PropTypes.string.isRequired,
+  searchInputHandler: PropTypes.func.isRequired,
 };
 
 export default ProductList;
