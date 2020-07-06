@@ -14,7 +14,7 @@
 
 ## Further things to do in larger projects
 
-- Create components sep
+- Create components in storybook. This would provide modularised approach to test, reuse components and check their behaviours.
 
 ## Setup
 
