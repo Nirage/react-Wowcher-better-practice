@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
-import "./dist/bootstrap.min.css";
+import "./dist/css/bootstrap.min.css";
 
 import ProductListContainer from "./components/ProductList.container";
 import "./App.scss";

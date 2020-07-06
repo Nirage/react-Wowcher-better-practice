@@ -5,11 +5,11 @@ $bg-color: #d2d2d2;
   font-style: normal;
   font-weight: normal;
   src: local("Open Sans Regular"), local("OpenSans-Regular"),
-    url("./fonts/OpenSans-Regular.ttf") format("ttf"),
-    url("./fonts/OpenSans-Regular.eot") format("eot"),
-    url("./fonts/OpenSans-Regular.woff") format("woff"),
-    url("./fonts/OpenSans-Regular.woff2") format("woff2"),
-    url("./fonts/OpenSans-Regular.woff2") format("svg");
+    url("./dist/fonts/OpenSans-Regular.ttf") format("ttf"),
+    url("./dist/fonts/OpenSans-Regular.eot") format("eot"),
+    url("./dist/fonts/OpenSans-Regular.woff") format("woff"),
+    url("./dist/fonts/OpenSans-Regular.woff2") format("woff2"),
+    url("./dist/fonts/OpenSans-Regular.woff2") format("svg");
 }
 
 body {
