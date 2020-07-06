@@ -31,47 +31,40 @@ export const flushRequestsAndUpdate = async (enzymeWrapper) => {
   enzymeWrapper.update();
 };
 
-describe("App page acessed", () => {
-  let app;
-
-  beforeEach(() => {
-    app = mount(<App />);
-  });
-
-  it("renders without crashing", async () => {
+describe("When App page has NOT parsed api data", () => {
+  it("renders loading text initially", async () => {
+    const app = mount(<App />);
+    expect(app).toHaveText("Loading...");
     await act(() => flushRequestsAndUpdate(app));
   });
+});
 
-  it("renders loading text initially", async () => {
-    expect(app).toHaveText("Loading...");
+describe("When App page has parsed api data", () => {
+  let app;
+
+  beforeEach(async() => {
+    app = mount(<App />);
     await act(() => flushRequestsAndUpdate(app));
   });
 
   it("renders a table after data load", async () => {
-    expect(app).toHaveText("Loading...");
-    await act(() => flushRequestsAndUpdate(app));
     expect(app.find("table")).toExist();
   });
 
   it("renders rows with country name as key", async () => {
-    await act(() => flushRequestsAndUpdate(app));
-
     expect(app.find("table tbody tr").at(56).key()).toEqual("Hominy");
     expect(app.find("table tbody tr").at(73).key()).toEqual("Lychee");
   });
 
   it("renders table that is sorted ascending", async () => {
-    await act(() => flushRequestsAndUpdate(app));
     expect(app.find("table")).toMatchSnapshot();
   });
 
   it("calculates total revenue of all branches", async () => {
-    await act(() => flushRequestsAndUpdate(app));
     expect(app.find("tfoot td:last-child").text()).toEqual("2,102,619.44");
   });
 
   it("filters the displayed products", async () => {
-    await act(() => flushRequestsAndUpdate(app));
     const changeEvent = { target: { value: "pear" } };
     app.find("input").simulate("change", changeEvent);
     expect(app.find("tfoot td:last-child").text()).toEqual("60,681.02");
