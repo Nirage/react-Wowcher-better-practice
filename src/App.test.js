@@ -1,12 +1,13 @@
 import React from "react";
 import Adapter from "enzyme-adapter-react-16";
-import { mount, configure } from "enzyme";
+import { mount, configure, shallow } from "enzyme";
 import "jest-enzyme";
 import { act } from "@testing-library/react";
 import branch1 from "../public/api/branch1.json";
 import branch2 from "../public/api/branch2.json";
 import branch3 from "../public/api/branch3.json";
 import App from "./App";
+import ProductListContainer from "./components/ProductList.container";
 
 configure({
   adapter: new Adapter(),
@@ -33,7 +34,7 @@ export const flushRequestsAndUpdate = async (enzymeWrapper) => {
 
 describe("When App page has NOT parsed api data", () => {
   it("renders loading text initially", async () => {
-    const app = mount(<App />);
+    const app = shallow(<App />);
     expect(app).toHaveText("Loading...");
     await act(() => flushRequestsAndUpdate(app));
   });
@@ -42,7 +43,7 @@ describe("When App page has NOT parsed api data", () => {
 describe("When App page has parsed api data", () => {
   let app;
 
-  beforeEach(async() => {
+  beforeEach(async () => {
     app = mount(<App />);
     await act(() => flushRequestsAndUpdate(app));
   });
@@ -56,7 +57,7 @@ describe("When App page has parsed api data", () => {
     expect(app.find("table tbody tr").at(73).key()).toEqual("Lychee");
   });
 
-  it("renders table that is sorted ascending", async () => {
+  it("renders ascending order table", async () => {
     expect(app.find("table")).toMatchSnapshot();
   });
 

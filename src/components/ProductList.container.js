@@ -1,43 +1,55 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
-import ProductItem from './ProductItem';
-import './ProductList.scss';
+import ProductItem from "./ProductItem";
+import "./ProductList.scss";
 
-const ProductList = ({ products, filter, searchInputHandler }) => {
-
+const ProductList = ({
+  searchInputHandler,
+  arrowClickHandler,
+  products,
+  filter,
+  arrowDirection,
+}) => {
   const aggregateProductList = (products) => {
     const aggregatedProducts = [];
-    
+
     products.forEach((product) => {
-      const matchesProductName = new RegExp(filter, 'i').test(product.name);
+      const matchesProductName = new RegExp(filter, "i").test(product.name);
 
       if (matchesProductName) {
         const productId = product.id;
 
         if (!aggregatedProducts[productId]) {
-          aggregatedProducts[productId] = { ...product }
+          aggregatedProducts[productId] = { ...product };
         } else {
           aggregatedProducts[productId].sold += product.sold;
         }
       }
     });
-    
+
     const refinedArray = Object.values(aggregatedProducts);
 
     refinedArray.sort((a, b) => {
       const optionA = a.name.toUpperCase();
       const optionB = b.name.toUpperCase();
-      
+
       return optionA < optionB ? -1 : optionA > optionB ? 1 : 0;
     });
 
+    arrowDirection && refinedArray.reverse();
+
     return refinedArray;
+  };
 
-  }
-
-  const formatNumber = (number) => new Intl.NumberFormat("en", { minimumFractionDigits: 2 }).format(number);
-  const totalPrice = aggregateProductList(products).reduce((total, product) => total + (product.sold * product.unitPrice), 0);
+  const formatNumber = (number) =>
+    new Intl.NumberFormat("en", { minimumFractionDigits: 2 }).format(number);
+  const totalPrice = aggregateProductList(products).reduce(
+    (total, product) => total + product.sold * product.unitPrice,
+    0
+  );
 
   return (
     <main className='product-list'>
@@ -46,12 +58,20 @@ const ProductList = ({ products, filter, searchInputHandler }) => {
       <table>
         <thead>
           <tr>
-            <th>Product</th>
+            <th onClick={arrowClickHandler}>
+              Product
+              <FontAwesomeIcon
+                icon={arrowDirection ? faArrowUp : faArrowDown}
+              />
+            </th>
             <th>Revenue</th>
           </tr>
         </thead>
         <tbody>
-          <ProductItem productData={aggregateProductList(products)} formatNumber={formatNumber} />
+          <ProductItem
+            productData={aggregateProductList(products)}
+            formatNumber={formatNumber}
+          />
         </tbody>
         <tfoot>
           <tr>

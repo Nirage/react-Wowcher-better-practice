@@ -7,6 +7,7 @@ const App = () => {
   const [isReady, setIsReady] = useState(false);
   const [products, setProducts] = useState(null);
   const [filter, setFilter] = useState("");
+  const [arrowDirection, setArrowDirection] = useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -27,15 +28,13 @@ const App = () => {
     return fetch(`api/${branchName}.json`).then((response) => response.json());
   };
 
-  const searchInputHandler = (e) => {
-    setFilter(e.target.value);
-  };
-
   return isReady ? (
     <ProductListContainer
-      searchInputHandler={searchInputHandler}
+      searchInputHandler={(e) => setFilter(e.target.value)}
+      arrowClickHandler={() => setArrowDirection(!arrowDirection)}
       products={products}
       filter={filter}
+      arrowDirection={arrowDirection}
     />
   ) : (
     "Loading..."
