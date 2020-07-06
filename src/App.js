@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import ProductListContainer from "./components/ProductList.container";
-import "./App.css";
+import "./App.scss";
 
 const App = () => {
   const [isReady, setIsReady] = useState(false);

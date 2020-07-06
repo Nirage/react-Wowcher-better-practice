@@ -1,0 +1,78 @@
+@font-face {
+  font-family: "open-sans";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Open Sans Regular"), local("OpenSans-Regular"),
+    url("./fonts/OpenSans-Regular.ttf") format("ttf"),
+    url("./fonts/OpenSans-Regular.eot") format("eot"),
+    url("./fonts/OpenSans-Regular.woff") format("woff"),
+    url("./fonts/OpenSans-Regular.woff2") format("woff2"),
+    url("./fonts/OpenSans-Regular.woff2") format("svg");
+}
+
+body {
+  background-color: #d2d2d2;
+  display: grid;
+  justify-content: center;
+  font-family: "open-sans";
+}
+
+.product-list {
+  display: grid;
+
+  table {
+    border-collapse: collapse;
+    border: 1px solid #626a80;
+  }
+
+  thead,
+  tfoot,
+  tbody,
+  p {
+    color: #ffffff;
+  }
+
+  th,
+  td {
+    border: 1px solid #626a80;
+    padding: 5px;
+  }
+
+  th {
+    background-color: #eb008c;
+
+    &:first-child {
+      width: 300px;
+    }
+
+    &:last-child {
+      width: 100px;
+    }
+  }
+
+  tr {
+    &:nth-child(2n) {
+      background-color: #21242c;
+    }
+
+    &:nth-child(2n + 1) {
+      background-color: #2a2f3d;
+    }
+  }
+
+  td:last-child {
+    text-align: right;
+  }
+
+  input {
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    padding: 3px 8px;
+    background-color: #eb008c;
+    color: #ffffff;
+    border: 1px solid #eb008c;
+    border-radius: 4px;
+    line-height: 24px;
+    outline: none;
+  }
+}
