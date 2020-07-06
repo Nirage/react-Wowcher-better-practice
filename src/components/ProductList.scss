@@ -4,6 +4,10 @@ $white: #fff;
   text-align: center;
   margin-top: 60px;
 
+  th:first-child {
+    cursor: pointer;
+  }
+
   th,
   tfoot td {
     background-color: #222;
