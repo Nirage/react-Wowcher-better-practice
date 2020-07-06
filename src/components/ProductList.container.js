@@ -1,7 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import ProductItem from './ProductItem';
+import './ProductList.scss';
 
 const ProductList = ({ products, filter, searchInputHandler }) => {
 
