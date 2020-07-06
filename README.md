@@ -15,6 +15,8 @@
 ## Further things to do in larger projects
 
 - Create components in storybook. This would provide modularised approach to test, reuse components and check their behaviours.
+- Introduce Typescript for typescript during compile time rather than runtime and further great features.
+- Introduce Redux/Redux Saga to hold the state in one global store asynchronously.
 
 ## Setup
 
