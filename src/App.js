@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { Container } from "react-bootstrap";
+import "./dist/bootstrap.min.css";
 
 import ProductListContainer from "./components/ProductList.container";
 import "./App.scss";
+import Searchbar from "./components/Searchbar.container";
 
 const App = () => {
   const [isReady, setIsReady] = useState(false);
@@ -28,16 +31,21 @@ const App = () => {
     return fetch(`api/${branchName}.json`).then((response) => response.json());
   };
 
-  return isReady ? (
-    <ProductListContainer
-      searchInputHandler={(e) => setFilter(e.target.value)}
-      arrowClickHandler={() => setArrowDirection(!arrowDirection)}
-      products={products}
-      filter={filter}
-      arrowDirection={arrowDirection}
-    />
-  ) : (
-    "Loading..."
+  return (
+    <Container>
+      <Searchbar setFilter={setFilter} />
+
+      {isReady ? (
+        <ProductListContainer
+          arrowClickHandler={() => setArrowDirection(!arrowDirection)}
+          products={products}
+          filter={filter}
+          arrowDirection={arrowDirection}
+        />
+      ) : (
+        <div className='product-list'>Loading...</div>
+      )}
+    </Container>
   );
 };
 

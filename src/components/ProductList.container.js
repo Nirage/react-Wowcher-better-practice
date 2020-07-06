@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Table } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
@@ -7,7 +8,6 @@ import ProductItem from "./ProductItem";
 import "./ProductList.scss";
 
 const ProductList = ({
-  searchInputHandler,
   arrowClickHandler,
   products,
   filter,
@@ -52,10 +52,8 @@ const ProductList = ({
   );
 
   return (
-    <main className='product-list'>
-      <label>Search Products</label>
-      <input type='text' onChange={searchInputHandler} />
-      <table>
+    <section className='product-list'>
+      <Table striped bordered hover variant='dark'>
         <thead>
           <tr>
             <th onClick={arrowClickHandler}>
@@ -79,15 +77,14 @@ const ProductList = ({
             <td>{formatNumber(totalPrice)}</td>
           </tr>
         </tfoot>
-      </table>
-    </main>
+      </Table>
+    </section>
   );
 };
 
 ProductList.propTypes = {
   products: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   filter: PropTypes.string.isRequired,
-  searchInputHandler: PropTypes.func.isRequired,
 };
 
 export default ProductList;

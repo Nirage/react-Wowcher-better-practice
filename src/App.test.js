@@ -7,7 +7,6 @@ import branch1 from "../public/api/branch1.json";
 import branch2 from "../public/api/branch2.json";
 import branch3 from "../public/api/branch3.json";
 import App from "./App";
-import ProductListContainer from "./components/ProductList.container";
 
 configure({
   adapter: new Adapter(),
@@ -35,7 +34,7 @@ export const flushRequestsAndUpdate = async (enzymeWrapper) => {
 describe("When App page has NOT parsed api data", () => {
   it("renders loading text initially", async () => {
     const app = shallow(<App />);
-    expect(app).toHaveText("Loading...");
+    expect(app.find(".product-list")).toHaveText("Loading...");
     await act(() => flushRequestsAndUpdate(app));
   });
 });

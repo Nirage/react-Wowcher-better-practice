@@ -1,64 +1,25 @@
 $white: #fff;
-$grey: #626a80;
-$dgrey: #21242c;
-$pink: #eb008c;
 
 .product-list {
-  display: grid;
+  text-align: center;
+  margin-top: 60px;
 
-  table {
-    border-collapse: collapse;
-    border: 1px solid $grey;
-  }
-
-  thead,
-  tfoot,
-  tbody,
-  p {
-    color: $white;
+  th,
+  tfoot td {
+    background-color: #222;
   }
 
   th,
   td {
-    border: 1px solid $grey;
-    padding: 5px;
-  }
-
-  th {
-    background-color: $pink;
-
     &:first-child {
-      width: 300px;
+      text-align: left;
     }
-
     &:last-child {
-      width: 100px;
+      text-align: right;
     }
   }
 
-  tr {
-    &:nth-child(2n) {
-      background-color: $dgrey;
-    }
-
-    &:nth-child(2n + 1) {
-      background-color: $dgrey;
-    }
-  }
-
-  td:last-child {
-    text-align: right;
-  }
-
-  input {
-    box-sizing: border-box;
-    margin-bottom: 5px;
-    padding: 3px 8px;
-    background-color: $pink;
-    color: $white;
-    border: 1px solid $pink;
-    border-radius: 4px;
-    line-height: 24px;
-    outline: none;
+  .svg-inline--fa {
+    float: right;
   }
 }
